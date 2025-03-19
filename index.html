@@ -377,7 +377,10 @@
 <!-- 环境属性 -->
 <fieldset>
     <legend>环境属性 (权重40%)</legend>
-    <p class="warning-note"><i class="fas fa-info-circle"></i> 选取原则：考虑待评估固废主要成分中前七位金属和前七位有机物
+    <p class="warning-note"><i class="fas fa-info-circle"></i> 选取原则：考虑待评估固废主要成分中前七位
+       <span style="color: orangered; font-weight: bold;">金属</span>
+                 和前七位
+       <span style="color: orangered; font-weight: bold;">有机物</span>
     </p>
 
     <!-- 金属污染物 -->
@@ -531,10 +534,10 @@
         </div>
 
         <div class="pollution-group">
-            <label>氟化物（0.4）<input type="checkbox" class="others" data-score="0.4"> </label>
-            <label>含磷污染物（0.4）<input type="checkbox" class="others" data-score="0.4"> </label>
-            <label>氯化物（0.1）<input type="checkbox" class="others" data-score="0.1"> </label>
-            <label>硫化物（0.1）<input type="checkbox" class="others" data-score="0.1"> </label>
+            <label><input type="checkbox" class="others" data-score="0.4"> 氟化物（0.4）</label>
+            <label><input type="checkbox" class="others" data-score="0.4"> 含磷物（0.4）</label>
+            <label><input type="checkbox" class="others" data-score="0.1"> 氯化物（0.1）</label>
+            <label><input type="checkbox" class="others" data-score="0.1">硫化物（0.1） </label>
         </div>
     </div>
 </fieldset>
@@ -544,49 +547,67 @@
 
     <div>
        <p style="color: black; margin: 0;">
-                   说明：根据
-       <span style="color: orangered; font-weight: bold;">前七位金属</span>
-                   和
-       <span style="color: orangered; font-weight: bold;">前七位有机物</span>
-                   计算生物毒性，
-       <span style="color: orangered; font-weight: bold;">
-                  注意所有有机物选择不应超过7种。
+                   说明：请选择固废中的前七位
+       <span style="color: orangered; font-weight: bold;">金属离子</span>
+        和
+       <span style="color: orangered; font-weight: bold;">无机物</span>
+       （请注意物质的形态），以及前七位
+       <span style="color: orangered; font-weight: bold;">有机物</span>
+       （包括"环境属性"中已选择的有机物）计算生物毒性。
        </p>    
     </div>
 
 
     <!-- 新增其他污染物区块 -->
     <div class="pollution-category" style="margin-top:20px;">
-        <div class="category-header" style="margin:15px 0 20px;">
-            <h4 class="section-title">
-                <i class="fas fa-vial"></i> <!-- 使用不同的图标以示区分 -->
-                其他污染物
-            </h4>
+        <!-- 无机物分组 -->
+        <div class="pollution-category high-pollution">
+        <div class="category-title">金属离子</div>
+        <div class="pollution-group">
+                <label><input type="checkbox" class="others" data-score="0">锂</label>
+                <label><input type="checkbox" class="others" data-score="0">镍</label>
+                <label><input type="checkbox" class="others" data-score="0">钴</label>
+                <label><input type="checkbox" class="others" data-score="0">锰</label>
+                <label><input type="checkbox" class="others" data-score="0">铁</label>
+                <label><input type="checkbox" class="others" data-score="0">铝</label>
+                <label><input type="checkbox" class="others" data-score="0">铜</label>
+                <label><input type="checkbox" class="others" data-score="0">钙</label>
+                <label><input type="checkbox" class="others" data-score="0">镁</label>
+                <label><input type="checkbox" class="others" data-score="0">锌</label>
+                <label><input type="checkbox" class="others" data-score="0">银</label>
+                <label><input type="checkbox" class="others" data-score="0">金</label>
+            </div>
         </div>
 
-        <!-- 无机物分组 -->
-        <div class="organic-group" style="grid-template-columns: repeat(2, 1fr); margin-top:10px;">
-            <div class="organic-category">
-                <div class="category-title" style="background:#4a5568;">无机物</div>
-                <div class="pollution-group">
-                    <label><input type="checkbox" class="others" data-score="0">六氟磷酸锂</label>
-                    <label><input type="checkbox" class="others" data-score="0">石墨</label>
-                    <label><input type="checkbox" class="others" data-score="0">炭黑</label>
-                    <label><input type="checkbox" class="others" data-score="0">二氧化硅</label>
-                </div>
+        <div class="pollution-category medium-pollution">
+        <div class="category-title">无机物</div>
+        <div class="pollution-group">
+                <label><input type="checkbox" class="others" data-score="0">氟化铝</label>
+                <label><input type="checkbox" class="others" data-score="0">六氟磷酸锂</label>
+                <label><input type="checkbox" class="others" data-score="0">硫酸钙</label>
+                <label><input type="checkbox" class="others" data-score="0">氢氧化钙</label>
+                <label><input type="checkbox" class="others" data-score="0">磷酸钙</label>
+                <label><input type="checkbox" class="others" data-score="0">石墨</label>
+                <label><input type="checkbox" class="others" data-score="0">炭黑</label>
+                <label><input type="checkbox" class="others" data-score="0">二氧化硅</label>
+                <label><input type="checkbox" class="others" data-score="0">碳酸钙</label>
+                <label><input type="checkbox" class="others" data-score="0">二氧化钛</label>
+                <label><input type="checkbox" class="others" data-score="0">氧化铝</label>
             </div>
+        </div>
 
-            <!-- 有机物分组 -->
-            <div class="organic-category">
-                <div class="category-title" style="background:#4a5568;">有机物</div>
-                <div class="pollution-group">
-                    <label><input type="checkbox" class="others" name="others" data-score="0">聚氨酯</label>
-                    <label><input type="checkbox" class="others" name="others" data-score="0">聚吡咯(PPy)</label>
-                    <label><input type="checkbox" class="others" name="others" data-score="0">1,4,5,8-四羟基-9,10-蒽醌(THAQ)</label>
-                    <label><input type="checkbox" class="others" name="others" data-score="0">聚四氟乙烯(PTFE)</label>
-                    <label><input type="checkbox" class="others" name="others" data-score="0">聚酯树脂</label>
-                    <label><input type="checkbox" class="others" name="others" data-score="0">聚乙烯醇(PVA)</label>
-                </div>
+        <!-- 有机物分组 -->
+        <div class="pollution-category low-pollution">
+            <div class="category-title">有机物</div>
+            <div class="pollution-group">
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">聚氨酯</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">聚吡咯(PPy)</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">1,4,5,8-四羟基-9,10-蒽醌(THAQ)</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">聚四氟乙烯(PTFE)</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">聚酯树脂</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">聚乙烯醇(PVA)</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">二(2-乙基己基)磷酸酯(P204)</label>
+                    <label><input type="checkbox" class="youjiwu" name="others" data-score="0">六溴联苯</label>
             </div>
         </div>
     </div>
@@ -601,6 +622,14 @@
 <!-- 修改后的资源属性模块 -->
 <fieldset>
     <legend>资源属性 (权重40%)</legend>
+
+    <div>
+       <p style="color: black; margin: 0;">
+                   说明：请填入
+       <span style="color: orangered; font-weight: bold;">可回收非关键资源数量</span>
+                               ，其他参数自动填入。
+       </p>    
+    </div>
 
     <!-- 关键资源固定输入 -->
     <div class="resource-section">
@@ -646,6 +675,17 @@
 <fieldset>
     <legend>排放强度 (权重10%)</legend>
     <div>
+       <p style="color: black; margin: 0;">
+       说明：请填入
+       <span style="color: orangered; font-weight: bold;">年固废总量(吨)</span>
+       和
+       <span style="color: orangered; font-weight: bold;">年处理量(吨)</span>
+        。
+       </p> 
+    </div>
+
+
+    <div>
         <label>年固废总量(吨):
             <input type="number" id="totalWaste" min="0" value="0">
         </label>
@@ -675,12 +715,24 @@
         "铁": {ld50: 100, ec50: 650},
         "铝": {ld50: 5000, ec50: 800},
         "铜": {ld50: 25, ec50: 2.5},
+        "钙": {ld50: 1000, ec50: Infinity},
+        "镁": {ld50: 2800, ec50: Infinity},
+        "锌": {ld50: 388, ec50: 15},
+        "银": {ld50: 10, ec50: 1.5},
+        "金": {ld50: 58, ec50: 58},
 
         //其他无机物
+        "氟化铝": {ld50: 1800, ec50: 1200},
         "六氟磷酸锂": {ld50: 170, ec50: 30},
+        "硫酸钙": {ld50: 2100, ec50: 1450},
+        "氢氧化钙": {ld50: 100, ec50: 84},
+        "磷酸钙": {ld50: 4000, ec50: 2200},
         "石墨": {ld50: Infinity, ec50: Infinity},
         "炭黑": {ld50: Infinity, ec50: Infinity},
         "二氧化硅": {ld50: Infinity, ec50: Infinity},
+        "碳酸钙": {ld50: 6450, ec50: 57000},   
+        "二氧化钛": {ld50: 1387, ec50: 334},
+        "氧化铝": {ld50: 5001, ec50: 114},
 
         // 有机物类
         "N-甲基吡咯烷酮(NMP)": {ld50: 3910, ec50: 100},
@@ -702,7 +754,10 @@
         "聚丙烯(PP)": {ld50: Infinity, ec50: Infinity},
         "聚碳酸酯(PC)": {ld50: 2200, ec50: 4800},
         "聚苯乙烯(PS)": {ld50: 1800, ec50: 4400},
-        "聚乙烯醇(PVA)": {ld50: 20000, ec50: 4000}
+        "聚乙烯醇(PVA)": {ld50: 20000, ec50: 4000},
+        "乙醇": {ld50: 5406, ec50: 1450},
+        "二(2-乙基己基)磷酸酯(P204)": {ld50: 50, ec50: 98},
+        "六溴联苯": {ld50: 90, ec50: 230},
     };
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -728,7 +783,7 @@
 
     // 有机物选择处理函数（新增精确计数）
     function organicCheckHandler() {
-        const selected = document.querySelectorAll('input[type="checkbox"][name="others"]:checked').length;
+        const selected = document.querySelectorAll('.youjiwu:checked').length;
         if (this.checked && selected > 7) {
             this.checked = false;
             alert("有机污染物总数不能超过7种！");
@@ -739,12 +794,6 @@
     function getSelectedPollutants() {
         // 获取所有选中的金属和有机物
         const selected = [];
-
-        // 获取金属污染物
-        document.querySelectorAll('.metal:checked').forEach(checkbox => {
-            const metalName = checkbox.parentElement.textContent.trim();
-            selected.push(metalName);
-        });
 
         // 获取有机物污染物
         document.querySelectorAll('.youjiwu:checked').forEach(checkbox => {
@@ -779,8 +828,8 @@
                 totalBioScore += (ldScore + ecScore);
                 console.log(name+"mixScore="+(ldScore + ecScore)+",ldScore="+ldScore+",ecScore="+ecScore)
                 // 生成显示内容
-                const ld50Str = data.ld50 == Infinity ? "无毒" : data.ld50;
-                const ec50Str = data.ec50 == Infinity ? "无毒" : data.ec50
+                const ld50Str = data.ld50 === Infinity ? "无毒" : data.ld50;
+                const ec50Str = data.ec50 === Infinity ? "无毒" : data.ec50
                 displayHTML += `
                 <li>${name}：
                     <span style="color: mediumblue;">LD50</span>: ${ld50Str} → ${ldScore.toFixed(3)}， 
@@ -999,7 +1048,7 @@
         const treated = parseFloat(document.getElementById('treatedWaste').value);
         const untreatedRatio = ((total - treated) / total) * 100 || 0;
 
-        let emissionScore = 0;
+        let emissionScore;
         if (untreatedRatio > 50) emissionScore = 0.7;
         else if (untreatedRatio >= 20) emissionScore = 0.4 + (0.3 * (50 - untreatedRatio) / 30);
         else if (untreatedRatio >= 5) emissionScore = 0.1 + (0.3 * (20 - untreatedRatio) / 15);
