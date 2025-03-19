@@ -478,14 +478,14 @@
         <div class="organic-group">
             <!-- 左侧列 -->
             <div class="organic-category">
-                <div class="category-title" style="background:#2563eb; margin-top:15px">一类管控名录中含有此有机物</div>
+                <div class="category-title" style="background:#2563eb; margin-top:15px">一类管控名录中含有此有机物（0.1）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.1">聚偏氟乙烯(PVDF)</label>
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.1">ABS塑料</label>
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.1">乙醇</label>
                 </div>
 
-                <div class="category-title" style="background:#dc2626">二类管控名录中皆含有此有机物</div>
+                <div class="category-title" style="background:#dc2626">二类管控名录中皆含有此有机物（0.4）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.4">N-甲基吡咯烷酮(NMP)</label>
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.4">卡尔费休液</label>
@@ -494,7 +494,7 @@
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.4">碳酸二乙酯(DEC)</label>
                 </div>
 
-                <div class="category-title" style="background:#d97706">三类管控名录中皆含有此有机物</div>
+                <div class="category-title" style="background:#d97706">三类管控名录中皆含有此有机物（0.7）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0.7">丁苯橡胶(SBR)</label>
                 </div>
@@ -502,11 +502,11 @@
 
             <!-- 右侧列 -->
             <div class="organic-category">
-                <div class="category-title" style="background:#dc2626">四类管控名录中皆含有此有机物</div>
+                <div class="category-title" style="background:#dc2626">四类管控名录中皆含有此有机物（1.0）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="1">异氰酸酯共聚物</label>
                 </div>
-                <div class="category-title" style="background:#059669; margin-top:15px">不在管控名录</div>
+                <div class="category-title" style="background:#059669; margin-top:15px">不在管控名录（0）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0">羧甲基纤维素钠(CMC)</label>
                     <label><input type="checkbox" name="others" class="youjiwu" data-score="0">聚丙烯(PP)</label>
@@ -531,16 +531,29 @@
         </div>
 
         <div class="pollution-group">
-            <label>氟化物<input type="checkbox" class="others" data-score="0.4"> </label>
-            <label>含磷污染物<input type="checkbox" class="others" data-score="0.4"> </label>
-            <label>氯化物<input type="checkbox" class="others" data-score="0.1"> </label>
-            <label>硫化物<input type="checkbox" class="others" data-score="0.1"> </label>
+            <label>氟化物（0.4）<input type="checkbox" class="others" data-score="0.4"> </label>
+            <label>含磷污染物（0.4）<input type="checkbox" class="others" data-score="0.4"> </label>
+            <label>氯化物（0.1）<input type="checkbox" class="others" data-score="0.1"> </label>
+            <label>硫化物（0.1）<input type="checkbox" class="others" data-score="0.1"> </label>
         </div>
     </div>
 </fieldset>
 
 <fieldset>
     <legend>生物毒性 (权重10%)</legend>
+
+    <div>
+       <p style="color: black; margin: 0;">
+                   说明：根据
+       <span style="color: orangered; font-weight: bold;">前七位金属</span>
+                   和
+       <span style="color: orangered; font-weight: bold;">前七位有机物</span>
+                   计算生物毒性，
+       <span style="color: orangered; font-weight: bold;">
+                  注意所有有机物选择不应超过7种。
+       </p>    
+    </div>
+
 
     <!-- 新增其他污染物区块 -->
     <div class="pollution-category" style="margin-top:20px;">
@@ -577,11 +590,10 @@
             </div>
         </div>
     </div>
-    <div>
-        <p style="color: orangered">
-            自动计算说明：根据环境属性中选择的前七位金属和有机物自动计算毒性，未显示则不在列表中。</p>
+    <div>        
         <p style="text-indent: 30px; font-size: 14px;">说明：污染物名称：急性毒性LD50（mg/kg）→ 分数， 生态毒性EC50（mg/kg） →
             分数</p>
+        <p style="text-indent: 30px; font-size: 16px; font-weight: bold;">生物毒性计算结果：</p>
         <div id="autoToxicityList"></div>
     </div>
 </fieldset>
@@ -594,22 +606,22 @@
     <div class="resource-section">
         <h4>关键资源数量：</h4>
         <div class="key-resource-item">
-            <label>一级关键资源（铂、钴等）数量：
+            <label>一级关键资源（1.0）数量：
                 <input type="number" id="level1" min="0" value="0" style="width: 80px" disabled>
             </label>
         </div>
         <div class="key-resource-item">
-            <label>二级关键资源（锗、锆等）数量：
+            <label>二级关键资源（0.7）数量：
                 <input type="number" id="level2" min="0" value="0" style="width: 80px" disabled>
             </label>
         </div>
         <div class="key-resource-item">
-            <label>三级关键资源（锂、镍等）数量：
+            <label>三级关键资源（0.4）数量：
                 <input type="number" id="level3" min="0" value="0" style="width: 80px" disabled>
             </label>
         </div>
         <div class="key-resource-item">
-            <label>四级关键资源（汞、砷等）数量：
+            <label>四级关键资源（0.2）数量：
                 <input type="number" id="level4" min="0" value="0" style="width: 80px" disabled>
             </label>
         </div>
@@ -618,7 +630,7 @@
     <!-- 可回收非关键资源数量 -->
     <div class="resource-section" style="margin-top:15px">
         <h4>可回收非关键资源：</h4>
-        <label> 可回收非关键资源数量
+        <label> 可回收非关键资源（0.1）数量
             <input type="number" id="recyclable" min="0" value="0" style="width: 80px">
         </label>
     </div>
@@ -682,7 +694,7 @@
         "碳酸二甲酯(DMC)": {ld50: 9000, ec50: 6000},
         "聚醚树脂": {ld50: 6000, ec50: 1300},
         "聚酯树脂": {ld50: 6000, ec50: 1400},
-        "异氰酸酯共聚物": {ld50: 5800, ec50: 1300},
+        "异氰酸酯共聚物": {ld50: 5800, ec50: 45},
         "乙酸乙酯": {ld50: 5620, ec50: 450},
         "聚氯乙烯(PVC)": {ld50: 238, ec50: 250},
         "ABS塑料": {ld50: 48, ec50: 300},
