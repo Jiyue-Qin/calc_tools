@@ -1124,8 +1124,10 @@
         else if (untreatedRatio === 0) emissionScore = 0;
         else emissionScore = 0.1;
         let untreatedRatioForm = ``
-        untreatedRatioForm = `<tr><td>排放强度</td><td>未处理资源的比例</td><td>${untreatedRatio.toFixed(1)}%</td><td>${emissionScore.toFixed(3)}</td><td>${emissionScore.toFixed(3)}</td><td>${(emissionScore).toFixed(3)}</td><td>10%</td><td>${(emissionScore * 0.1).toFixed(3)}</td>`;
-
+        if (untreatedRatio !== 0) {
+            untreatedRatioForm = `<tr><td>排放强度</td><td>未处理资源的比例</td><td>${untreatedRatio.toFixed(1)}%</td><td>${emissionScore.toFixed(3)}</td><td>${emissionScore.toFixed(3)}</td><td>${(emissionScore).toFixed(3)}</td><td>10%</td><td>${(emissionScore * 0.1).toFixed(3)}</td>`;
+        }
+        
         // 综合计算
         const totalScore =
             10 * ((envScore / 15 * 0.4) +      // 环境属性标准化到0-0.4
