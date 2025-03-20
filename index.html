@@ -396,14 +396,14 @@
                 <div class="pollution-group">
                     <label><input type="checkbox" class="youjiwu" data-score="0.7">丁苯橡胶(SBR)</label>
                 </div>
-            </div>
-
-            <!-- 右侧列 -->
-            <div class="organic-category">
                 <div class="category-title" style="background:#dc2626">四类管控名录中皆含有此有机物（1.0）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" class="youjiwu" data-score="1">异氰酸酯共聚物</label>
                 </div>
+            </div>
+
+            <!-- 右侧列 -->
+            <div class="organic-category">
                 <div class="category-title" style="background:#0596a9;">不在管控名录（0）</div>
                 <div class="pollution-group">
                     <label><input type="checkbox" class="youjiwu" data-score="0">羧甲基纤维素钠(CMC)</label>
@@ -414,6 +414,16 @@
                     <label><input type="checkbox" class="youjiwu" data-score="0">聚碳酸酯(PC)</label>
                     <label><input type="checkbox" class="youjiwu" data-score="0">乙二醇</label>
                     <label><input type="checkbox" class="youjiwu" data-score="0">聚醚树脂</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">聚氨酯</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">聚吡咯(PPy)</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">1,4,5,8-四羟基-9,10-蒽醌(THAQ)</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">聚四氟乙烯(PTFE)</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">聚酯树脂</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">聚乙烯醇(PVA)</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">二(2-乙基己基)磷酸酯(P204)</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">六溴联苯</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">苯环氧树脂</label>
+                    <label><input type="checkbox" class="youjiwu" data-score="0">脂环氧树脂</label>
                 </div>
             </div>
         </div>
@@ -448,7 +458,7 @@
        <span style="color: orangered; font-weight: bold;">无机物</span>
        （请注意物质的形态），以及前七位
        <span style="color: orangered; font-weight: bold;">有机物</span>
-       （包括"环境属性"中已选择的有机物）计算生物毒性。
+       （已在"环境属性"中选择）计算生物毒性。
        </p>    
     </div>
 
@@ -491,28 +501,6 @@
             </div>
         </div>
 
-        <!-- 有机物分组 -->
-        <div class="pollution-category-youjiwu">
-            <div class="category-title">有机物</div>
-            <div class="pollution-group">
-                <label><input type="checkbox" class="toxic" data-score="0">聚氨酯</label>
-                <label><input type="checkbox" class="toxic" data-score="0">聚吡咯(PPy)</label>
-                <label><input type="checkbox" class="toxic" data-score="0">1,4,5,8-四羟基-9,10-蒽醌(THAQ)</label>
-                <label><input type="checkbox" class="toxic" data-score="0">聚四氟乙烯(PTFE)</label>
-                <label><input type="checkbox" class="toxic" data-score="0">聚酯树脂</label>
-                <label><input type="checkbox" class="toxic" data-score="0">聚乙烯醇(PVA)</label>
-                <label><input type="checkbox" class="toxic" data-score="0">二(2-乙基己基)磷酸酯(P204)</label>
-                <label><input type="checkbox" class="toxic" data-score="0">六溴联苯</label>
-                <label><input type="checkbox" class="toxic" data-score="0">乙醇</label>
-                <label><input type="checkbox" class="toxic" data-score="0">碳酸钙</label>
-                <label><input type="checkbox" class="toxic" data-score="0">氧化铝</label>
-                <label><input type="checkbox" class="toxic" data-score="0">卡尔费休液</label>
-                <label><input type="checkbox" class="toxic" data-score="0">碳酸二乙酯</label>
-                <label><input type="checkbox" class="toxic" data-score="0">乙二醇</label>
-                <label><input type="checkbox" class="toxic" data-score="0">苯环氧树脂</label>
-                <label><input type="checkbox" class="toxic" data-score="0">脂环氧树脂</label>
-            </div>
-        </div>
     </div>
     <div>        
         <p style="text-indent: 30px; font-size: 14px;">说明：污染物名称：急性毒性LD50（mg/kg）→ 分数， 生态毒性EC50（mg/kg） →
@@ -661,8 +649,6 @@
         "二(2-乙基己基)磷酸酯(P204)": {ld50: 50, ec50: 98},
         "六溴联苯": {ld50: 90, ec50: 230},
         "乙醇": {ld50: 10470, ec50: 5012},
-        "碳酸钙": {ld50: 6450, ec50: Infinity},
-        "氧化铝": {ld50: 10000, ec50: 114},
         "卡尔费休液": {ld50: 187, ec50: 85.6},
         "碳酸二乙酯(DEC)": {ld50: 15000, ec50: 8000},
         "乙二醇": {ld50: 4000, ec50: 1200},
@@ -716,11 +702,6 @@
         if (this.checked && selected2 > 7) {
             this.checked = false;
             alert("生物毒性-无机物 总数不能超过7种！");
-        }
-        const selected3 = document.querySelectorAll('.pollution-category-youjiwu .toxic:checked').length;
-        if (this.checked && selected3 > 7) {
-            this.checked = false;
-            alert("生物毒性-有机物 总数不能超过7种！");
         }
     }
 
@@ -1127,7 +1108,7 @@
         if (untreatedRatio !== 0) {
             untreatedRatioForm = `<tr><td>排放强度</td><td>未处理资源的比例</td><td>${untreatedRatio.toFixed(1)}%</td><td>${emissionScore.toFixed(3)}</td><td>${emissionScore.toFixed(3)}</td><td>${(emissionScore).toFixed(3)}</td><td>10%</td><td>${(emissionScore * 0.1).toFixed(3)}</td>`;
         }
-        
+
         // 综合计算
         const totalScore =
             10 * ((envScore / 15 * 0.4) +      // 环境属性标准化到0-0.4
