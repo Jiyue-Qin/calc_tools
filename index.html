@@ -1100,8 +1100,8 @@
         
         let emissionScore;
         if (untreatedRatio > 50) emissionScore = 0.7;
-        else if (untreatedRatio >= 20) emissionScore = 0.4 + (0.3 * (50 - untreatedRatio) / 30);
-        else if (untreatedRatio >= 5) emissionScore = 0.1 + (0.3 * (20 - untreatedRatio) / 15);
+        else if (untreatedRatio >= 20) emissionScore = 0.7 - (0.3 * (50 - untreatedRatio) / 30);
+        else if (untreatedRatio >= 5) emissionScore = 0.4 - (0.3 * (20 - untreatedRatio) / 15);
         else if (untreatedRatio === 0) emissionScore = 0;
         else emissionScore = 0.1;
         let untreatedRatioForm = ``
