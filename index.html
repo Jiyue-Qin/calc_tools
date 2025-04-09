@@ -264,6 +264,82 @@
         [style*="background:#dc2699"] {
             background: linear-gradient(to right, #80d6d0, #68b4f0) !important;
         }
+
+        /* 资源展示区样式 */
+        .selected-resources-container {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .selected-resources-container:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-tag {
+            display: inline-flex;
+            align-items: center;
+            margin: 5px;
+            padding: 8px 15px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+        }
+
+        .resource-tag:hover {
+            transform: translateY(-2px);
+            border-color: #bfdbfe;
+            box-shadow: var(--box-shadow);
+        }
+
+        .remove-resource-btn {
+            margin-left: 10px;
+            color: #ef4444;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            padding-left: 8px;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .remove-resource-btn:hover {
+            color: #dc2626;
+            text-shadow: 0 0 8px rgba(220, 38, 38, 0.2);
+        }
+
+        /* 原有样式补充 */
+        .key-resource-item label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+
+        .resource-section h4 {
+            color: #1e293b;
+            margin: 20px 0 15px;
+            font-size: 1.1em;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .resource-section h4::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 3px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
@@ -365,6 +441,9 @@
                 <label><input type="checkbox" class="metal" data-score="0.1">硼</label>
                 <label><input type="checkbox" class="metal" data-score="0.1">锆</label>
                 <label><input type="checkbox" class="metal" data-score="0.1">钡</label>
+                <label><input type="checkbox" class="metal" data-score="0.1">铯</label>
+                <label><input type="checkbox" class="metal" data-score="0.1">铷</label>
+                <label><input type="checkbox" class="metal" data-score="0.1">钙</label>
             </div>
         </div>
     </div>
@@ -441,7 +520,7 @@
             <label><input type="checkbox" class="others" data-score="0.4">氟化物（0.4）</label>
             <label><input type="checkbox" class="others" data-score="0.4">含磷物（0.4）</label>
             <label><input type="checkbox" class="others" data-score="0.1">氯化物（0.1）</label>
-            <label><input type="checkbox" class="others" data-score="0.1">硫化物（0.1） </label>
+            <label><input type="checkbox" class="others" data-score="0.1">硫化物（0.1）</label>
         </div>
     </div>
 </fieldset>
@@ -451,7 +530,7 @@
 
     <div>
        <p style="color: black; margin: 0;">
-                   说明：请选择固废中的前七位
+       说明：请选择固废中的前七位
        <span style="color: orangered; font-weight: bold;">金属离子</span>
         和
        <span style="color: orangered; font-weight: bold;">无机物</span>
@@ -461,13 +540,12 @@
        </p>    
     </div>
 
-
-    <!-- 新增其他污染物区块 -->
+    <!-- 其他污染物区块 -->
     <div class="pollution-category" style="margin-top:20px;">
         <!-- 金属分组 -->
         <div class="pollution-category-metal">
-        <div class="category-title">金属离子</div>
-        <div class="pollution-group">
+            <div class="category-title">金属离子</div>
+            <div class="pollution-group">
                 <label><input type="checkbox" class="toxic" data-score="0">锂</label>
                 <label><input type="checkbox" class="toxic" data-score="0">镍</label>
                 <label><input type="checkbox" class="toxic" data-score="0">钴</label>
@@ -484,8 +562,8 @@
         </div>
 
         <div class="pollution-category-wujiwu">
-        <div class="category-title">无机物</div>
-        <div class="pollution-group">
+            <div class="category-title">无机物</div>
+            <div class="pollution-group">
                 <label><input type="checkbox" class="toxic" data-score="0">氟化铝</label>
                 <label><input type="checkbox" class="toxic" data-score="0">六氟磷酸锂</label>
                 <label><input type="checkbox" class="toxic" data-score="0">硫酸钙</label>
@@ -497,9 +575,9 @@
                 <label><input type="checkbox" class="toxic" data-score="0">碳酸钙</label>
                 <label><input type="checkbox" class="toxic" data-score="0">二氧化钛</label>
                 <label><input type="checkbox" class="toxic" data-score="0">氧化铝</label>
+                <label><input type="checkbox" class="toxic" data-score="0">不锈钢</label>
             </div>
         </div>
-
     </div>
     <div>        
         <p style="text-indent: 30px; font-size: 14px;">说明：污染物名称：急性毒性LD50（mg/kg）→ 分数， 生态毒性EC50（mg/kg） →
@@ -509,18 +587,23 @@
     </div>
 </fieldset>
 
-<!-- 修改后的资源属性模块 -->
+<!-- 资源属性模块 -->
 <fieldset>
     <legend>资源属性 (权重40%)</legend>
 
     <div>
-       <p style="color: black; margin: 0;">
-                   说明：请填入
-       <span style="color: orangered; font-weight: bold;">可回收非关键资源数量</span>
-                               ，其他参数自动填入。
-       </p>    
+        <p style="color: black; margin: 0;">
+            说明：请填入
+            <span style="color: orangered; font-weight: bold;">可回收非关键资源数量</span>
+            ，其他参数自动填入。
+        </p>
     </div>
 
+    <!-- 已选资源展示区 -->
+    <div class="selected-resources-container">
+        <h4>已选关键资源（点击×排除）</h4>
+        <div id="selectedResourcesList" class="resources-grid"></div>
+    </div>
     <!-- 关键资源固定输入 -->
     <div class="resource-section">
         <h4>关键资源数量：</h4>
@@ -555,7 +638,7 @@
     </div>
 
     <!-- 复杂度计算 -->
-    <div style="margin-top:15px">
+    <div class="resource-section" style="margin-top:15px">
         <h4>资源复杂度：</h4>
         <label>关键资源总数：<input type="number" id="totalResourceTypes" min="0" value="0" disabled></label>
     </div>
@@ -565,13 +648,13 @@
 <fieldset>
     <legend>排放强度 (权重10%)</legend>
     <div>
-       <p style="color: black; margin: 0;">
-       说明：请填入
-       <span style="color: orangered; font-weight: bold;">年固废总量(吨)</span>
-       和
-       <span style="color: orangered; font-weight: bold;">年处理量(吨)</span>
-        。
-       </p> 
+        <p style="color: black; margin: 0;">
+            说明：请填入
+            <span style="color: orangered; font-weight: bold;">年固废总量(吨)</span>
+            和
+            <span style="color: orangered; font-weight: bold;">年处理量(吨)</span>
+            。
+        </p>
     </div>
 
 
@@ -594,7 +677,7 @@
 <div id="warning" class="warning"></div>
 
 <script>
-    // 新增毒性数据库（与表格数据对应）
+    // 毒性数据库（与表格数据对应）
     const toxicityDB = {
         // 金属类
         "锂": {ld50: 150, ec50: 600},
@@ -619,9 +702,10 @@
         "石墨": {ld50: Infinity, ec50: Infinity},
         "炭黑": {ld50: Infinity, ec50: Infinity},
         "二氧化硅": {ld50: Infinity, ec50: Infinity},
-        "碳酸钙": {ld50: 6450, ec50: 57000},   
+        "碳酸钙": {ld50: 6450, ec50: 57000},
         "二氧化钛": {ld50: 1387, ec50: 334},
         "氧化铝": {ld50: 5001, ec50: 114},
+        "不锈钢":{ld50: Infinity, ec50: Infinity},
 
         // 有机物类
         "N-甲基吡咯烷酮(NMP)": {ld50: 3910, ec50: 100},
@@ -681,7 +765,7 @@
         }
     }
 
-    // 有机物选择处理函数（新增精确计数）
+    // 有机物选择处理函数
     function organicCheckHandler() {
         const selected = document.querySelectorAll('.youjiwu:checked').length;
         if (this.checked && selected > 7) {
@@ -690,7 +774,7 @@
         }
     }
 
-    // 有毒物选择处理函数（新增）
+    // 有毒物选择处理函数
     function toxicCheckHandler() {
         const selected1 = document.querySelectorAll('.pollution-category-metal .toxic:checked').length;
         if (this.checked && selected1 > 7) {
@@ -715,7 +799,7 @@
             selected.push(organicName);
         });
 
-        // 新增：获取其他污染物
+        // 获取其他污染物
         document.querySelectorAll('.toxic:checked').forEach(checkbox => {
             const OtherName = checkbox.parentElement.textContent;
             selected.push(OtherName);
@@ -727,7 +811,6 @@
     // 生物毒性计算函数
     function calculateToxicity() {
         let toxicForm = ``
-        
         const pollutants = getSelectedPollutants();
         let totalBioScore = 0;
         let displayHTML = "<ul>";
@@ -736,7 +819,6 @@
             const data = toxicityDB[name] || {ld50: 'ignor', ec50: 'ignor'};
             const ldScore = calculateSingleToxicity(data.ld50, 'ld50');
             const ecScore = calculateSingleToxicity(data.ec50, 'ec50');
-            
             if (data.ld50 === 'ignor' && data.ec50 === 'ignor') {
                 // 不在清单中情况不做处理
             } else {
@@ -869,7 +951,7 @@
         "铝": 4,
         "铁": 4,
         "锑": 4,
-        "含磷污染物": 4,
+        "含磷物": 4,
         "锌": 4,
         "铟": 4,
         "钛": 4,
@@ -877,26 +959,60 @@
         "金": 4,
         "铜": 4,
         "二氧化硅": 4,
-        "钡": 4
+        "钡": 4,
+        "钙": 4,
     };
-
+    // 声明变量存储已选资源和排除资源
+    let selectedResources = [];
+    let excludedResources = [];
     function updateKeyResources() {
         // 初始化各等级计数器
-        const counters = {1: 0, 2: 0, 3: 0, 4: 0};
+        selectedResources = [];
+        excludedResources = [];
 
         // 获取所有选中的金属污染物
         document.querySelectorAll('.metal:checked').forEach(checkbox => {
-            const metal = checkbox.parentElement.textContent;
-            const level = keyResourceMap[metal];
-            if (level) counters[level]++;
+            const metal = checkbox.parentElement.textContent.trim().replace(/（.*?）/g, ""); // 去除括号内容
+            selectedResources.push(metal);
         });
 
-        // 更新输入框值
-        [1, 2, 3, 4].forEach(level => {
-            document.getElementById(`level${level}`).value = counters[level];
+        // 捕获硫化物和含磷物（其他污染因子）
+        document.querySelectorAll('.others:checked').forEach(checkbox => {
+            const text = checkbox.parentElement.textContent.trim();
+            const name = text.replace(/（.*?）/g, "").trim(); // 提取污染物名称
+            if (name === "硫化物" || name === "含磷物") {
+                selectedResources.push(name);
+            }
         });
 
-        // 触发复杂度计算
+        // 捕获二氧化硅（生物毒性-无机物）
+        document.querySelectorAll('.toxic:checked').forEach(checkbox => {
+            const text = checkbox.parentElement.textContent.trim();
+            if (text === "二氧化硅") {
+                selectedResources.push(text);
+            }
+        });
+
+        // 更新显示已选资源
+        updateSelectedResourcesDisplay();
+        calculateResource();
+    }
+    // 更新已选资源显示
+    function updateSelectedResourcesDisplay() {
+        const container = document.getElementById('selectedResourcesList');
+        container.innerHTML = selectedResources.map(resource => `
+        <div class="resource-tag">
+            ${resource}
+            <span class="remove-resource-btn" onclick="excludeResource('${resource}')">×</span>
+        </div>
+    `).join('');
+    }
+
+    // 排除资源函数
+    function excludeResource(resource) {
+        excludedResources.push(resource);
+        selectedResources = selectedResources.filter(r => r !== resource);
+        updateSelectedResourcesDisplay();
         calculateResource();
     }
 
@@ -904,6 +1020,14 @@
     function initMetalEvents() {
         document.getElementById("warning").style.visibility = "hidden";
         document.querySelectorAll('.metal').forEach(checkbox => {
+            checkbox.addEventListener('change', updateKeyResources);
+        });
+        // 捕获硫化物和含磷物（其他污染因子）
+        document.querySelectorAll('.others').forEach(checkbox => {
+            checkbox.addEventListener('change', updateKeyResources);
+        });
+        // 捕获二氧化硅（生物毒性-无机物）
+        document.querySelectorAll('.toxic').forEach(checkbox => {
             checkbox.addEventListener('change', updateKeyResources);
         });
     }
@@ -920,6 +1044,8 @@
 
     // 资源属性计算函数
     function calculateResource() {
+        const counters = {1: 0, 2: 0, 3: 0, 4: 0};
+
         // 各等级资源得分系数
         const levelScores = {
             1: 1,    // 一级
@@ -930,24 +1056,21 @@
 
         let totalScore = 0;
         let totalTypes = 0;
-        let level1 = 0;
-        let level2 = 0;
-        let level3 = 0;
-        let level4 = 0;
+        // 计算时过滤排除资源
+        selectedResources.filter(r => !excludedResources.includes(r)).forEach(metal => {
+            const level = keyResourceMap[metal];
+            if (level) counters[level]++;
+        });
         // 计算关键资源得分
         [1, 2, 3, 4].forEach(level => {
             const count = parseInt(document.getElementById(`level${level}`).value) || 0;
             totalScore += levelScores[level] * count;
             if (count > 0) totalTypes += count;
-            if (level === 1) {
-                level1 = count;
-            } else if (level === 2) {
-                level2 = count;
-            } else if (level === 3){
-                level3 = count;
-            } else if (level === 4) {
-                level4 = count;
-            }
+        });
+
+        // 更新输入框值
+        [1, 2, 3, 4].forEach(level => {
+            document.getElementById(`level${level}`).value = counters[level];
         });
 
         // 可回收非关键资源得分
@@ -966,10 +1089,10 @@
         return {
             total: totalScore + complexity + (isNonKeyScore > 0 ? 0.1 * isNonKeyScore : 0),
             details: {
-                level1: level1,
-                level2: level2,
-                level3: level3,
-                level4: level4,
+                level1: counters[1],
+                level2: counters[2],
+                level3: counters[3],
+                level4: counters[4],
                 complexity: complexity,
                 keyScore: totalScore,
                 isNonKeyScore: isNonKeyScore
@@ -977,6 +1100,13 @@
         };
     }
 
+    // 初始化时绑定事件
+    document.querySelectorAll('.metal').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            updateKeyResources();
+            calculateResource();
+        });
+    });
 
     // 主计算函数
     function calculate() {
@@ -1150,7 +1280,7 @@
         }
     }
 
-    // 新增清除表单函数
+    // 清除表单函数
     function clearForm() {
         // 清除所有输入框
         document.querySelectorAll('input[type="number"]').forEach(input => {
