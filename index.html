@@ -259,7 +259,7 @@
         [style*="background:#0596a9"] {
             background: linear-gradient(to right, #a0c4aa, #70c29a) !important;
         }
-        
+
         /* 浅蓝绿系渐变 (冷色系) */
         [style*="background:#dc2699"] {
             background: linear-gradient(to right, #80d6d0, #68b4f0) !important;
@@ -349,9 +349,9 @@
 <fieldset>
     <legend>环境属性 (权重40%)</legend>
     <p class="warning-note"><i class="fas fa-info-circle"></i> 选取原则：考虑待评估固废主要成分中前七位
-       <span style="color: orangered; font-weight: bold;">金属</span>
+        <span style="color: orangered; font-weight: bold;">金属</span>
         和前七位
-       <span style="color: orangered; font-weight: bold;">有机物</span>
+        <span style="color: orangered; font-weight: bold;">有机物</span>
     </p>
 
     <!-- 金属污染物 -->
@@ -532,15 +532,15 @@
     <legend>生物毒性 (权重10%)</legend>
 
     <div>
-       <p style="color: black; margin: 0;">
-       说明：请选择固废中的前七位
-       <span style="color: orangered; font-weight: bold;">金属离子</span>
-        和
-       <span style="color: orangered; font-weight: bold;">无机物</span>
-       （请注意物质的形态），以及前七位
-       <span style="color: orangered; font-weight: bold;">有机物</span>
-       （已在"环境属性"中选择）计算生物毒性。
-       </p>    
+        <p style="color: black; margin: 0;">
+            说明：请选择固废中的前七位
+            <span style="color: orangered; font-weight: bold;">金属离子</span>
+            和
+            <span style="color: orangered; font-weight: bold;">无机物</span>
+            （请注意物质的形态），以及前七位
+            <span style="color: orangered; font-weight: bold;">有机物</span>
+            （已在"环境属性"中选择）计算生物毒性。
+        </p>
     </div>
 
     <!-- 其他污染物区块 -->
@@ -585,8 +585,9 @@
                 <label><input type="checkbox" class="toxic" data-score="0">不锈钢</label>
             </div>
         </div>
+
     </div>
-    <div>        
+    <div>
         <p style="text-indent: 30px; font-size: 14px;">说明：污染物名称：急性毒性LD50（mg/kg）→ 分数， 生态毒性EC50（mg/kg） →
             分数</p>
         <p style="text-indent: 30px; font-size: 16px; font-weight: bold;">生物毒性计算结果：</p>
@@ -699,18 +700,18 @@
         "锌": {ld50: 388, ec50: 15},
         "银": {ld50: 10, ec50: 1.5},
         "金": {ld50: 58, ec50: 58},
-        "镉": {fld50: 225, ec50: 0.135},
+        "镉": {ld50: 225, ec50: 0.135},
         "钽": {ld50: 3000, ec50: Infinity},
 
         //其他无机物
         "氟化铝": {ld50: 1800, ec50: 1200},
-        "氟化钙": {fld50: 4250, ec58: 3800},
+        "氟化钙": {ld50: 4250, ec50: 3000},
         "六氟磷酸锂": {ld50: 170, ec50: 30},
         "硫酸钙": {ld50: 2100, ec50: 1450},
         "氢氧化钙": {ld50: 100, ec50: 84},
         "磷酸钙": {ld50: 4000, ec50: 2200},
         "石墨": {ld50: Infinity, ec50: Infinity},
-        "炭黑": {fld50: 10080, ec50: 56001},
+        "炭黑": {ld50: 10000, ec50: 5600},
         "活性炭": {ld50: Infinity, ec50: Infinity},
         "二氧化硅": {ld50: Infinity, ec50: Infinity},
         "碳酸钙": {ld50: 6450, ec50: Infinity},
@@ -739,7 +740,6 @@
         "聚碳酸酯(PC)": {ld50: 2200, ec50: 4800},
         "聚苯乙烯(PS)": {ld50: 1800, ec50: 4400},
         "聚乙烯醇(PVA)": {ld50: 20000, ec50: 4000},
-        // "乙醇": {ld50: 5406, ec50: 1450},
         "二(2-乙基己基)磷酸酯(P204)": {ld50: 50, ec50: 98},
         "六溴联苯": {ld50: 90, ec50: 230},
         "乙醇": {ld50: 10470, ec50: 5012},
@@ -760,7 +760,7 @@
         document.querySelectorAll('.youjiwu').forEach(checkbox => {
             checkbox.addEventListener('change', organicCheckHandler);
         });
-        
+
         // 生物毒性
         document.querySelectorAll('.toxic').forEach(checkbox => {
             checkbox.addEventListener('change', toxicCheckHandler);
@@ -822,6 +822,7 @@
     // 生物毒性计算函数
     function calculateToxicity() {
         let toxicForm = ``
+
         const pollutants = getSelectedPollutants();
         let totalBioScore = 0;
         let displayHTML = "<ul>";
@@ -830,6 +831,7 @@
             const data = toxicityDB[name] || {ld50: 'ignor', ec50: 'ignor'};
             const ldScore = calculateSingleToxicity(data.ld50, 'ld50');
             const ecScore = calculateSingleToxicity(data.ec50, 'ec50');
+
             if (data.ld50 === 'ignor' && data.ec50 === 'ignor') {
                 // 不在清单中情况不做处理
             } else {
@@ -876,7 +878,7 @@
             toxicForm += `<tr><td rowspan="${(pollutants.length) * 2}">生物毒性</td>`;
             toxicForm += (formData1 + formData2);
         }
-        
+
         return {
             totalBioScore: totalBioScore,
             toxicForm: toxicForm,
@@ -1132,7 +1134,7 @@
         let countOthers = document.querySelectorAll('.others:checked').length;
         console.log(countOthers+"其他")
         let ttl1 = countMetal + countYoujiwu + countOthers;
-        
+
         // 金属污染得分
         let metalScore = 0;
         document.querySelectorAll('.metal:checked').forEach(checkbox => {
@@ -1140,7 +1142,7 @@
             metalScore += parseFloat(checkbox.dataset.score);
         });
         let checkedCheckboxes = document.querySelectorAll('.metal:checked');
-        
+
         // 有机物污染得分
         let ttlYoujiwu = 0;
         document.querySelectorAll('.youjiwu:checked').forEach(checkbox => {
@@ -1148,7 +1150,7 @@
             ttlYoujiwu += parseFloat(checkbox.dataset.score);
         });
         let youjiwuNodeListOf = document.querySelectorAll('.youjiwu:checked');
-        
+
         // 其他污染因子
         let ttlOthers = 0;
         document.querySelectorAll('.others:checked').forEach(checkbox => {
@@ -1231,13 +1233,13 @@
             <tr><td colspan="2">关键资源复杂度</td><td>${complexity}</td></tr>
              `
         }
-        
+
 
         // 排放强度计算
         const total = parseFloat(document.getElementById('totalWaste').value);
         const treated = parseFloat(document.getElementById('treatedWaste').value);
         const untreatedRatio = ((total - treated) / total) * 100 || 0;
-        
+
         let emissionScore;
         if (untreatedRatio > 50) emissionScore = 0.7;
         else if (untreatedRatio >= 20) emissionScore = 0.7 - (0.3 * (50 - untreatedRatio) / 30);
